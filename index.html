@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Filip Świstowski | Software Engineer Portfolio</title>
+  <meta name="description"
+    content="Portfolio of Filip Świstowski, a Software Engineer specializing in modern web applications, cloud architecture, and high-performance APIs.">
+
+  <!-- Tailwind CSS v3 CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts: Inter & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <!-- Tailwind Configuration -->
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            heading: ['Outfit', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              indigo: {
+                50: '#eef2ff',
+                100: '#e0e7ff',
+                200: '#c7d2fe',
+                300: '#a5b4fc',
+                400: '#818cf8',
+                500: '#6366f1',
+                600: '#4f46e5',
+                700: '#4338ca',
+                800: '#3730a3',
+                900: '#312e81',
+              },
+              emerald: {
+                50: '#ecfdf5',
+                100: '#d1fae5',
+                200: '#a7f3d0',
+                300: '#6ee7b7',
+                400: '#34d399',
+                500: '#10b981',
+                600: '#059669',
+                700: '#047857',
+                800: '#065f46',
+                900: '#064e3b',
+              }
+            }
+          },
+          animation: {
+            'blob': 'blob 7s infinite',
+            'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+          },
+          keyframes: {
+            blob: {
+              '0%': { transform: 'translate(0px, 0px) scale(1)' },
+              '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+              '66%': { transform: 'translate(-20px, 20px) scale(0.95)' },
+              '100%': { transform: 'translate(0px, 0px) scale(1)' },
+            },
+            fadeInUp: {
+              '0%': { opacity: '0', transform: 'translateY(20px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: rgba(15, 23, 42, 0.05);
+    }
+
+    .dark ::-webkit-scrollbar-track {
+      background: rgba(15, 23, 42, 0.6);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: rgba(99, 102, 241, 0.2);
+      border-radius: 9999px;
+    }
+
+    .dark ::-webkit-scrollbar-thumb {
+      background: rgba(99, 102, 241, 0.4);
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(99, 102, 241, 0.5);
+    }
+
+    .glass {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(12px);
+    }
+
+    .dark .glass {
+      background: rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(12px);
+    }
+  </style>
+</head>
+
+<body class="bg-slate-50 text-slate-900 dark:bg-slate-950 dark:text-slate-100 font-sans transition-colors duration-300">
+
+  <!-- Header & Navbar -->
+  <header
+    class="fixed top-0 left-0 w-full z-50 border-b border-slate-200/40 dark:border-slate-800/40 glass transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 sm:h-20">
+
+        <!-- Logo -->
+        <a href="#home"
+          class="flex items-center space-x-2 font-heading font-bold text-xl sm:text-2xl tracking-tight bg-gradient-to-r from-brand-indigo-600 to-brand-emerald-500 bg-clip-text text-transparent hover:opacity-90 transition-opacity">
+          <span>&lt;Filip Świstowski /&gt;</span>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex items-center space-x-8 font-medium">
+          <a href="#home"
+            class="hover:text-brand-indigo-600 dark:hover:text-brand-indigo-400 transition-colors">Home</a>
+          <a href="#experience"
+            class="hover:text-brand-indigo-600 dark:hover:text-brand-indigo-400 transition-colors">Experience</a>
+          <a href="#education"
+            class="hover:text-brand-indigo-600 dark:hover:text-brand-indigo-400 transition-colors">Education</a>
+          <a href="#projects"
+            class="hover:text-brand-indigo-600 dark:hover:text-brand-indigo-400 transition-colors">Projects</a>
+          <a href="#contact"
+            class="hover:text-brand-indigo-600 dark:hover:text-brand-indigo-400 transition-colors">Contact</a>
+        </nav>
+
+        <!-- Utility Actions (Theme Toggle & CTA) -->
+        <div class="hidden sm:flex items-center space-x-4">
+          <!-- Theme Toggle -->
+          <button id="theme-toggle"
+            class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-900 transition-all focus:outline-none"
+            aria-label="Toggle theme">
+            <!-- Sun Icon (visible in light mode, hidden in dark mode) -->
+            <svg id="theme-toggle-light-icon" class="w-5 h-5 text-amber-500 hidden" fill="currentColor"
+              viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.46 5.05l-.707-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 100 2h1z"
+                fill-rule="evenodd" clip-rule="evenodd"></path>
+            </svg>
+            <!-- Moon Icon (visible in dark mode, hidden in light mode) -->
+            <svg id="theme-toggle-dark-icon" class="w-5 h-5 text-indigo-400 hidden" fill="currentColor"
+              viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+              <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+            </svg>
+          </button>
+
+          <a target="_blank" href="CV Filip Świstowski.pdf" download
+            class="inline-flex items-center justify-center px-5 py-2.5 rounded-xl font-medium text-white bg-brand-indigo-600 hover:bg-brand-indigo-700 shadow-md shadow-brand-indigo-500/10 hover:shadow-brand-indigo-500/20 transform hover:-translate-y-0.5 transition-all">
+            <span>Download CV</span>
+            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+            </svg>
+          </a>
+        </div>
+
+        <!-- Mobile Controls (Hamburger & Theme Toggle) -->
+        <div class="flex items-center space-x-3 md:hidden">
+          <button id="theme-toggle-mobile"
+            class="p-2 rounded-xl border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-900 transition-all focus:outline-none"
+            aria-label="Toggle theme">
+            <!-- Mobile Icon Toggled Dynamically -->
+            <svg id="theme-toggle-mobile-icon" class="w-5 h-5 text-amber-500 dark:text-indigo-400" fill="currentColor"
+              viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"></svg>
+          </button>
+          <button id="menu-toggle"
+            class="p-2 rounded-xl border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-900 transition-all focus:outline-none"
+            aria-label="Toggle Navigation Menu">
+            <svg id="menu-icon-hamburger" class="w-6 h-6 text-slate-700 dark:text-slate-300" fill="none"
+              stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+            <svg id="menu-icon-close" class="w-6 h-6 text-slate-700 dark:text-slate-300 hidden" fill="none"
+              stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu"
+      class="hidden md:hidden border-t border-slate-200/50 dark:border-slate-800/50 bg-white/95 dark:bg-slate-950/95 backdrop-blur-lg animate-fade-in-up">
+      <div class="px-4 pt-4 pb-6 space-y-3 font-medium">
+        <a href="#home"
+          class="mobile-nav-link block px-4 py-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors">Home</a>
+        <a href="#experience"
+          class="mobile-nav-link block px-4 py-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors">Experience</a>
+        <a href="#education"
+          class="mobile-nav-link block px-4 py-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors">Education</a>
+        <a href="#projects"
+          class="mobile-nav-link block px-4 py-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors">Projects</a>
+        <a href="#contact"
+          class="mobile-nav-link block px-4 py-2.5 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors">Contact</a>
+        <a target="_blank" href="CV Filip Świstowski.pdf" download
+          class="flex items-center justify-center w-full mt-4 px-5 py-3 rounded-xl font-medium text-white bg-brand-indigo-600 hover:bg-brand-indigo-700 transition-all text-center">
+          <span>Download CV</span>
+          <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+              d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-hidden">
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex flex-col justify-center pt-20 md:pt-0 relative">
+      <!-- Background Blobs -->
+      <div
+        class="absolute top-1/4 -left-12 w-72 h-72 bg-brand-indigo-400/20 dark:bg-brand-indigo-600/10 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob">
+      </div>
+      <div
+        class="absolute top-1/3 right-10 w-80 h-80 bg-brand-emerald-400/20 dark:bg-brand-emerald-600/10 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000">
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center py-12 md:py-24 relative z-10">
+        <!-- Text details -->
+        <div class="lg:col-span-7 flex flex-col justify-center space-y-6">
+          <span
+            class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-wider uppercase text-brand-emerald-700 bg-brand-emerald-100/60 dark:text-brand-emerald-400 dark:bg-brand-emerald-950/40 w-fit">
+            <span class="flex h-2 w-2 relative">
+              <span
+                class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-emerald-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-emerald-500"></span>
+            </span>
+            <span>Available for Opportunities</span>
+          </span>
+
+          <h1 class="font-heading font-extrabold text-4xl sm:text-5xl lg:text-6xl tracking-tight leading-none">
+            Hi, I'm <span
+              class="bg-gradient-to-r from-brand-indigo-600 via-indigo-500 to-brand-emerald-500 bg-clip-text text-transparent">Filip</span>
+          </h1>
+
+          <h2 class="font-heading font-bold text-2xl sm:text-3xl text-slate-700 dark:text-slate-300">
+            Software Engineer
+          </h2>
+
+          <p class="text-base sm:text-lg text-slate-600 dark:text-slate-400 leading-relaxed max-w-xl">
+            Passionate software engineer specialized in building robust web applications, microservices, and distributed
+            cloud systems. Over 3.5 years of designing user-centric interfaces and highly scalable backend APIs using
+            modern frameworks.
+          </p>
+
+          <!-- CTAs & Socials -->
+          <div class="flex flex-col sm:flex-row items-stretch sm:items-center space-y-4 sm:space-y-0 sm:space-x-6 pt-4">
+            <a href="#contact"
+              class="inline-flex items-center justify-center px-6 py-3.5 rounded-xl font-medium text-white bg-brand-indigo-600 hover:bg-brand-indigo-700 shadow-lg shadow-brand-indigo-500/20 hover:shadow-brand-indigo-500/30 transform hover:-translate-y-0.5 transition-all text-center">
+              Let's Connect
+              <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3">
+                </path>
+              </svg>
+            </a>
+
+            <a target="_blank" href="CV Filip Świstowski.pdf" download
+              class="inline-flex items-center justify-center px-6 py-3.5 rounded-xl font-medium border border-slate-300 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-900 transition-all text-center">
+              Download CV
+              <svg class="w-4 h-4 ml-2 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                  d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+              </svg>
+            </a>
+          </div>
+
+          <div class="flex items-center space-x-5 pt-6 text-slate-500 dark:text-slate-400">
+            <span class="text-sm font-semibold tracking-wider uppercase text-slate-400 dark:text-slate-600">Find Me
+              On:</span>
+            <!-- GitHub Link -->
+            <a href="https://github.com/filipswistowski" target="_blank" rel="noopener noreferrer"
+              class="hover:text-brand-indigo-600 dark:hover:text-brand-indigo-400 transition-colors"
+              aria-label="GitHub">
+              <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+              </svg>
+            </a>
+            <!-- LinkedIn Link -->
+            <a href="https://linkedin.com/in/filip-świstowski-475016192" target="_blank" rel="noopener noreferrer"
+              class="hover:text-brand-indigo-600 dark:hover:text-brand-indigo-400 transition-colors"
+              aria-label="LinkedIn">
+              <svg class="w-6 h-6 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Visual Art / Dashboard Mockup -->
+        <div class="lg:col-span-5 relative mt-8 lg:mt-0 flex justify-center">
+          <div class="relative w-full max-w-[420px] aspect-square flex items-center justify-center">
+
+            <!-- Rotating background outline -->
+            <div
+              class="absolute inset-0 rounded-full border border-dashed border-slate-300 dark:border-slate-700/80 animate-[spin_40s_linear_infinite]">
+            </div>
+            <div
+              class="absolute inset-4 rounded-full border border-dashed border-brand-indigo-300/30 dark:border-brand-indigo-500/30 animate-[spin_20s_linear_infinite_reverse]">
+            </div>
+
+            <!-- Central Profile Card -->
+            <div
+              class="w-[82%] aspect-[4/5] bg-gradient-to-tr from-brand-indigo-600 to-brand-emerald-500 rounded-3xl shadow-2xl p-0.5 relative overflow-hidden group">
+              <!-- Decorative Inner overlay -->
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-white/90 via-transparent to-transparent dark:from-slate-950/90 dark:via-transparent dark:to-transparent z-10">
+              </div>
+
+              <!-- Content space (e.g., stylized developer representation/illustration) -->
+              <div
+                class="w-full h-full bg-white dark:bg-slate-900 rounded-[22px] overflow-hidden flex flex-col justify-between p-6 relative">
+                <!-- Abstract coding matrix animation placeholder in background -->
+                <div
+                  class="absolute inset-0 opacity-40 dark:opacity-25 font-mono text-[9px] text-brand-indigo-600 dark:text-brand-emerald-400 p-4 leading-3 overflow-hidden select-none pointer-events-none transition-opacity">
+                  namespace Portfolio {<br>
+                  &nbsp;&nbsp;class Dev {<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;string Name = "Filip";<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;string Role = "Software Engineer";<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;string[] Skills = { ".NET 9", "TypeScript", "Azure" };<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;public void Deploy() {<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Console.WriteLine("World Built");<br>
+                  &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+                  &nbsp;&nbsp;}<br>
+                  }
+                </div>
+
+                <!-- Avatar image containing Filip & dog -->
+                <div class="relative z-20 flex justify-center pt-36">
+                  <div
+                    class="w-36 h-36 sm:w-40 sm:h-40 rounded-full border-4 border-brand-indigo-500/30 overflow-hidden relative shadow-lg bg-slate-100 dark:bg-slate-800">
+                    <img src="me.jpg" alt="Filip and his dog" class="w-full h-full object-cover">
+                  </div>
+                </div>
+
+                <div class="relative z-20 text-left pt-4">
+                  <div class="h-1.5 w-12 bg-brand-emerald-500 rounded-full mb-3"></div>
+                  <h3 class="font-heading font-bold text-slate-900 dark:text-white">Filip Świstowski</h3>
+                  <p class="text-slate-600 dark:text-slate-400 text-xs mt-1 font-medium tracking-wide">35 years old,
+                    Software Engineer, Kraków, Poland.</p>
+
+                  <div class="flex items-center space-x-1.5 mt-3.5">
+                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                    <span class="text-[10px] text-slate-500 dark:text-slate-300 font-mono tracking-wider">C# &bull;
+                      Typescript &bull; SQL &bull; </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-24 border-t border-slate-200/50 dark:border-slate-800/50 relative">
+      <div class="max-w-3xl mx-auto">
+        <!-- Section Heading -->
+        <div class="text-center mb-16">
+          <h2 class="font-heading font-extrabold text-3xl sm:text-4xl tracking-tight">Work Experience</h2>
+          <div class="h-1 w-16 bg-gradient-to-r from-brand-indigo-600 to-brand-emerald-500 rounded-full mx-auto mt-4">
+          </div>
+          <p class="text-slate-500 dark:text-slate-400 mt-4 text-sm sm:text-base">A summary of my professional journey
+            and key technical contributions.</p>
+        </div>
+
+        <!-- Timeline -->
+        <div class="relative border-l-2 border-slate-200 dark:border-slate-800 ml-4 md:ml-8 space-y-12">
+
+          <!-- Experience Card 1 -->
+          <div class="relative pl-8 sm:pl-10 group">
+            <!-- Timeline node icon -->
+            <span
+              class="absolute -left-[13px] top-1.5 flex items-center justify-center w-6 h-6 rounded-full bg-slate-50 dark:bg-slate-950 border-2 border-brand-indigo-600 dark:border-brand-indigo-500 text-brand-indigo-600 dark:text-brand-indigo-400 group-hover:bg-brand-indigo-600 group-hover:text-white transition-all duration-300 shadow">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                  d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                </path>
+              </svg>
+            </span>
+
+            <div
+              class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/40 dark:bg-slate-900/40 hover:bg-white dark:hover:bg-slate-900 hover:shadow-xl hover:shadow-indigo-500/5 dark:hover:shadow-indigo-500/2 hover:-translate-y-1 transition-all duration-300">
+              <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4 gap-2">
+                <div>
+                  <h3 class="font-heading font-bold text-lg text-slate-800 dark:text-slate-200">Backend Developer
+                  </h3>
+                  <p class="text-sm font-semibold text-brand-indigo-600 dark:text-brand-indigo-400 mt-0.5">Mangopay</p>
+                </div>
+                <span
+                  class="inline-flex items-center text-xs font-semibold px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 w-fit">
+                  Feb 2024 &mdash; Jul 2024
+                </span>
+              </div>
+
+              <ul class="space-y-3.5 text-sm sm:text-base text-slate-600 dark:text-slate-400">
+                <li class="flex items-start">
+                  <svg class="w-4 h-4 mr-2.5 text-brand-emerald-500 mt-1 flex-shrink-0" fill="none"
+                    stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  </svg>
+                  <span>Backend work on payment gateway application.</span>
+                </li>
+                <li class="flex items-start">
+                  <svg class="w-4 h-4 mr-2.5 text-brand-emerald-500 mt-1 flex-shrink-0" fill="none"
+                    stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  </svg>
+                  <span>Participated in the migration of a legacy monolithic API to microservices using .NET 6.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Experience Card 2 -->
+          <div class="relative pl-8 sm:pl-10 group">
+            <span
+              class="absolute -left-[13px] top-1.5 flex items-center justify-center w-6 h-6 rounded-full bg-slate-50 dark:bg-slate-950 border-2 border-brand-indigo-600 dark:border-brand-indigo-500 text-brand-indigo-600 dark:text-brand-indigo-400 group-hover:bg-brand-indigo-600 group-hover:text-white transition-all duration-300 shadow">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                  d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                </path>
+              </svg>
+            </span>
+
+            <div
+              class="p-6 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/40 dark:bg-slate-900/40 hover:bg-white dark:hover:bg-slate-900 hover:shadow-xl hover:shadow-indigo-500/5 dark:hover:shadow-indigo-500/2 hover:-translate-y-1 transition-all duration-300">
+              <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4 gap-2">
+                <div>
+                  <h3 class="font-heading font-bold text-lg text-slate-800 dark:text-slate-200">Junior Software
+                    Developer</h3>
+                  <p class="text-sm font-semibold text-brand-indigo-600 dark:text-brand-indigo-400 mt-0.5">HybridHero
+                  </p>
+                </div>
+                <span
+                  class="inline-flex items-center text-xs font-semibold px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 w-fit">
+                  Jan 2021 &mdash; Dec 2023
+                </span>
+              </div>
+
+              <ul class="space-y-3.5 text-sm sm:text-base text-slate-600 dark:text-slate-400">
+                <li class="flex items-start">
+                  <svg class="w-4 h-4 mr-2.5 text-brand-emerald-500 mt-1 flex-shrink-0" fill="none"
+                    stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  </svg>
+                  <span>Built office space management software for desktop and mobile with .NET Core 3.1, Angular 7,
+                    Ionic</span>
+                </li>
+                <li class="flex items-start">
+                  <svg class="w-4 h-4 mr-2.5 text-brand-emerald-500 mt-1 flex-shrink-0" fill="none"
+                    stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  </svg>
+                  <span>Developed, documented, and tested RESTful web services in .NET Core with complete integration
+                    and
+                    test coverage (>90%).</span>
+                </li>
+                <li class="flex items-start">
+                  <svg class="w-4 h-4 mr-2.5 text-brand-emerald-500 mt-1 flex-shrink-0" fill="none"
+                    stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  </svg>
+                  <span>Configured Azure Devops and built automated CI/CD pipelines for production releases.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="py-24 border-t border-slate-200/50 dark:border-slate-800/50 relative">
+      <!-- Grid Container -->
+      <div class="max-w-5xl mx-auto">
+        <!-- Section Heading -->
+        <div class="text-center mb-16">
+          <h2 class="font-heading font-extrabold text-3xl sm:text-4xl tracking-tight">Education Background</h2>
+          <div class="h-1 w-16 bg-gradient-to-r from-brand-indigo-600 to-brand-emerald-500 rounded-full mx-auto mt-4">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <!-- Education Card 2 -->
+          <div
+            class="p-8 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white/40 dark:bg-slate-900/40 hover:bg-white dark:hover:bg-slate-900 hover:shadow-xl hover:shadow-indigo-500/5 dark:hover:shadow-indigo-500/2 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
+            <div>
+              <div
+                class="p-3 bg-brand-emerald-100/50 dark:bg-brand-emerald-950/40 text-brand-emerald-600 dark:text-brand-emerald-400 rounded-2xl w-fit mb-6">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.825-4.998 12.085 12.085 0 01.663-6.478L12 14zm0 0v6m-7.5-6h15">
+                  </path>
+                </svg>
+              </div>
+              <h3 class="font-heading font-bold text-xl text-slate-800 dark:text-slate-100 leading-tight">Programming
+                Bootcamp</h3>
+              <p class="text-sm font-semibold text-brand-emerald-600 dark:text-brand-emerald-400 mt-1.5">Codecool</p>
+              <p class="text-slate-600 dark:text-slate-400 text-sm mt-3.5 leading-relaxed">
+                Foundations in computer networks, relational databases, data structures, algorithm analysis, and
+                Object-Oriented Programming (OOP) architectures.
+              </p>
+            </div>
+
+            <div
+              class="border-t border-slate-200 dark:border-slate-800 mt-6 pt-4 flex justify-between items-center text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <span>2019 &mdash; 2020</span>
+            </div>
+          </div>
+
+          <!-- Education Card 1 -->
+          <div
+            class="p-8 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white/40 dark:bg-slate-900/40 hover:bg-white dark:hover:bg-slate-900 hover:shadow-xl hover:shadow-indigo-500/5 dark:hover:shadow-indigo-500/2 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
+            <div>
+              <div
+                class="p-3 bg-brand-indigo-100/50 dark:bg-brand-indigo-950/40 text-brand-indigo-600 dark:text-brand-indigo-400 rounded-2xl w-fit mb-6">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.825-4.998 12.085 12.085 0 01.663-6.478L12 14zm0 0v6m-7.5-6h15">
+                  </path>
+                </svg>
+              </div>
+              <h3 class="font-heading font-bold text-xl text-slate-800 dark:text-slate-100 leading-tight">Bachelor of
+                Engineering in Applied Computer Science</h3>
+              <p class="text-sm font-semibold text-brand-indigo-600 dark:text-brand-indigo-400 mt-1.5">Uniwersytet DSW
+                Ideis Kraków</p>
+              <p class="text-slate-600 dark:text-slate-400 text-sm mt-3.5 leading-relaxed">
+                Specialized in Software Engineering and Distributed Architectures.
+              </p>
+            </div>
+
+            <div
+              class="border-t border-slate-200 dark:border-slate-800 mt-6 pt-4 flex justify-between items-center text-xs font-semibold text-slate-500 dark:text-slate-400">
+              <span>2025 &mdash; 2028</span>
+            </div>
+          </div>
+
+
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-24 border-t border-slate-200/50 dark:border-slate-800/50 relative">
+      <div class="max-w-7xl mx-auto">
+        <!-- Section Heading -->
+        <div class="text-center mb-16">
+          <h2 class="font-heading font-extrabold text-3xl sm:text-4xl tracking-tight">Featured Projects</h2>
+          <div class="h-1 w-16 bg-gradient-to-r from-brand-indigo-600 to-brand-emerald-500 rounded-full mx-auto mt-4">
+          </div>
+          <p class="text-slate-500 dark:text-slate-400 mt-4 text-sm sm:text-base">A curated list of applications I've
+            designed and deployed.</p>
+        </div>
+
+        <!-- Project Cards Grid -->
+        <div class="flex flex-wrap justify-center gap-8">
+
+          <!-- Project 1 -->
+          <div
+            class="group w-full max-w-sm rounded-3xl border border-slate-200 dark:border-slate-800 bg-white/40 dark:bg-slate-900/40 overflow-hidden hover:bg-white dark:hover:bg-slate-900 hover:shadow-xl hover:shadow-indigo-500/5 dark:hover:shadow-indigo-500/2 hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between">
+            <div>
+              <!-- Visual Card Header (gradient mesh/placeholder) -->
+              <div
+                class="h-48 w-full bg-gradient-to-br from-brand-indigo-600/20 to-brand-emerald-500/20 flex items-center justify-center relative overflow-hidden">
+                <div class="absolute inset-0 bg-slate-950/5 group-hover:bg-slate-950/0 transition-colors duration-300">
+                </div>
+                <!-- Abstract visual placeholder with icons -->
+                <svg class="w-12 h-12 text-brand-indigo-500 group-hover:scale-110 transition-transform duration-300"
+                  fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                    d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10">
+                  </path>
+                </svg>
+              </div>
+
+              <div class="p-6">
+                <!-- Tech Stack Badges -->
+                <div class="flex flex-wrap gap-2 mb-4">
+                  <span
+                    class="px-2.5 py-0.5 text-xs font-semibold rounded bg-violet-100 text-violet-800 dark:bg-violet-950/50 dark:text-violet-400">.NET
+                    9</span>
+                  <span
+                    class="px-2.5 py-0.5 text-xs font-semibold rounded bg-emerald-100 text-emerald-800 dark:bg-emerald-950/50 dark:text-emerald-400">Vue.js</span>
+                  <span
+                    class="px-2.5 py-0.5 text-xs font-semibold rounded bg-orange-100 text-orange-800 dark:bg-orange-950/50 dark:text-orange-400">SignalR</span>
+                </div>
+
+                <h3
+                  class="font-heading font-bold text-xl text-slate-800 dark:text-slate-100 group-hover:text-brand-indigo-600 dark:group-hover:text-brand-indigo-400 transition-colors">
+                  Real-time Quiz Game</h3>
+                <p class="text-slate-600 dark:text-slate-400 text-sm mt-3 leading-relaxed">
+                  A Kahoot-like quiz game with real-time score tracking and game events.
+                </p>
+              </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="p-6 pt-0 flex items-center justify-between gap-4">
+              <a target="_blank" href="https://github.com/filipswistowski/RTQuiz"
+                class="flex-1 inline-flex items-center justify-center px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-800 text-sm font-semibold hover:bg-slate-100 dark:hover:bg-slate-900 transition-all text-center">
+                View Code
+              </a>
+              <a href="#"
+                class="flex-1 inline-flex items-center justify-center px-4 py-2.5 rounded-xl text-sm font-semibold text-white bg-brand-indigo-600 hover:bg-brand-indigo-700 shadow-md shadow-brand-indigo-500/10 hover:shadow-brand-indigo-500/20 transform hover:-translate-y-0.5 transition-all text-center">
+                Live Demo
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 border-t border-slate-200/50 dark:border-slate-800/50 relative">
+      <div class="max-w-4xl mx-auto">
+        <!-- Section Heading -->
+        <div class="text-center mb-16">
+          <h2 class="font-heading font-extrabold text-3xl sm:text-4xl tracking-tight">Get In Touch</h2>
+          <div class="h-1 w-16 bg-gradient-to-r from-brand-indigo-600 to-brand-emerald-500 rounded-full mx-auto mt-4">
+          </div>
+          <p class="text-slate-500 dark:text-slate-400 mt-4 text-sm sm:text-base">Drop me a message if you'd like to
+            collaborate or just say hello!</p>
+        </div>
+
+        <div class="flex justify-center">
+
+          <!-- Contact Info Details -->
+          <div
+            class="w-full max-w-lg p-8 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white/40 dark:bg-slate-900/40 flex flex-col justify-between space-y-8">
+            <div class="space-y-6">
+              <h3 class="font-heading font-bold text-xl text-slate-800 dark:text-slate-100">Let's talk about details
+              </h3>
+              <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                I usually reply within 24 business hours.
+              </p>
+
+              <div class="space-y-4 pt-4">
+                <div class="flex items-center space-x-4">
+                  <div
+                    class="p-3 bg-brand-indigo-100/50 dark:bg-brand-indigo-950/40 text-brand-indigo-600 dark:text-brand-indigo-400 rounded-xl">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                      </path>
+                    </svg>
+                  </div>
+                  <div>
+                    <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Email Address</p>
+                    <a href="mailto:filipswistowski@gmail.com"
+                      class="text-sm font-medium hover:text-brand-indigo-600 dark:hover:text-brand-indigo-400 transition-colors">filipswistowski@gmail.com</a>
+                  </div>
+                </div>
+
+                <div class="flex items-center space-x-4">
+                  <div
+                    class="p-3 bg-brand-emerald-100/50 dark:bg-brand-emerald-950/40 text-brand-emerald-600 dark:text-brand-emerald-400 rounded-xl">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    </svg>
+                  </div>
+                  <div>
+                    <p class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Location</p>
+                    <span class="text-sm font-medium">Kraków, Poland</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Social profiles -->
+            <div class="border-t border-slate-200 dark:border-slate-800 pt-6 flex items-center space-x-4">
+              <a href="https://github.com/filipswistowski" target="_blank" rel="noopener noreferrer"
+                class="p-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 transition-all"
+                aria-label="GitHub">
+                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+                </svg>
+              </a>
+              <a href="https://linkedin.com/in/filip-świstowski-475016192" target="_blank" rel="noopener noreferrer"
+                class="p-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 transition-all"
+                aria-label="LinkedIn">
+                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer
+    class="border-t border-slate-200 dark:border-slate-800/60 bg-white dark:bg-slate-950/40 py-12 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+
+        <!-- Branding -->
+        <a href="#home"
+          class="font-heading font-bold text-xl tracking-tight bg-gradient-to-r from-brand-indigo-600 to-brand-emerald-500 bg-clip-text text-transparent hover:opacity-90 transition-opacity">
+          &lt;Filip Świstowski /&gt;
+        </a>
+
+        <!-- Credits / Copyright -->
+        <p class="text-xs text-slate-400 dark:text-slate-600 text-center md:text-left">
+          &copy; 2026 Filip Świstowski. All rights reserved. Designed with pure HTML5, Tailwind CSS, &amp; JS.
+        </p>
+
+        <!-- Links -->
+        <div class="flex items-center space-x-6 text-sm font-medium text-slate-500 dark:text-slate-400">
+          <a href="#home"
+            class="hover:text-brand-indigo-600 dark:hover:text-brand-indigo-400 transition-colors">Home</a>
+          <a href="#experience"
+            class="hover:text-brand-indigo-600 dark:hover:text-brand-indigo-400 transition-colors">Experience</a>
+          <a href="#projects"
+            class="hover:text-brand-indigo-600 dark:hover:text-brand-indigo-400 transition-colors">Projects</a>
+        </div>
+
+      </div>
+    </div>
+  </footer>
+
+  <!-- Theme Toggle & Navigation Scripts -->
+  <script>
+    // Theme Selectors
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const themeToggleMobileBtn = document.getElementById('theme-toggle-mobile');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const themeToggleMobileIcon = document.getElementById('theme-toggle-mobile-icon');
+
+    // Sun & Moon SVGs for Mobile
+    const sunSvg = `<path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.46 5.05l-.707-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 100 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path>`;
+    const moonSvg = `<path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>`;
+
+    // Initial theme setup state
+    if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+      themeToggleLightIcon.classList.remove('hidden');
+      themeToggleDarkIcon.classList.add('hidden');
+      themeToggleMobileIcon.innerHTML = sunSvg;
+    } else {
+      document.documentElement.classList.remove('dark');
+      themeToggleDarkIcon.classList.remove('hidden');
+      themeToggleLightIcon.classList.add('hidden');
+      themeToggleMobileIcon.innerHTML = moonSvg;
+    }
+
+    // Toggle Desktop Theme
+    themeToggleBtn.addEventListener('click', toggleTheme);
+    // Toggle Mobile Theme
+    themeToggleMobileBtn.addEventListener('click', toggleTheme);
+
+    function toggleTheme() {
+      if (document.documentElement.classList.contains('dark')) {
+        document.documentElement.classList.remove('dark');
+        localStorage.setItem('color-theme', 'light');
+        themeToggleDarkIcon.classList.remove('hidden');
+        themeToggleLightIcon.classList.add('hidden');
+        themeToggleMobileIcon.innerHTML = moonSvg;
+      } else {
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('color-theme', 'dark');
+        themeToggleLightIcon.classList.remove('hidden');
+        themeToggleDarkIcon.classList.add('hidden');
+        themeToggleMobileIcon.innerHTML = sunSvg;
+      }
+    }
+
+    // Mobile Menu Controls
+    const menuToggleBtn = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIconHamburger = document.getElementById('menu-icon-hamburger');
+    const menuIconClose = document.getElementById('menu-icon-close');
+
+    menuToggleBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+      menuIconHamburger.classList.toggle('hidden');
+      menuIconClose.classList.toggle('hidden');
+    });
+
+    // Close Mobile Menu on navigation link click
+    const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+    mobileNavLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        menuIconHamburger.classList.remove('hidden');
+        menuIconClose.classList.add('hidden');
+      });
+    });
+  </script>
+</body>
+
+</html>
